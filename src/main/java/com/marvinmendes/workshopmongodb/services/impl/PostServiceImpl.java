@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -26,5 +28,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post getById(String id) {
         return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+    }
+
+    public List<Post> getByTitle(String text) {
+        return repository.findByTitleContainingIgnoreCase(text);
     }
 }
