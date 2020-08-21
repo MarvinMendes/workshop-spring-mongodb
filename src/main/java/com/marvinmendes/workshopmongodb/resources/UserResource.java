@@ -1,6 +1,7 @@
 package com.marvinmendes.workshopmongodb.resources;
 
 import com.marvinmendes.workshopmongodb.DTO.UserDTO;
+import com.marvinmendes.workshopmongodb.domain.Post;
 import com.marvinmendes.workshopmongodb.domain.User;
 import com.marvinmendes.workshopmongodb.services.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -52,4 +53,10 @@ public class UserResource {
        return ResponseEntity.noContent().build();
     }
 
+    //busca todos os posts de um usuário
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> getPosts(@PathVariable String id) {
+        User user = service.getById(id);
+        return ResponseEntity.ok().body(user.getPosts());
+    }
 }
