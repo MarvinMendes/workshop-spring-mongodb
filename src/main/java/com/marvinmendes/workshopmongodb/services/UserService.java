@@ -12,4 +12,5 @@ public interface UserService {
     User getById(String id);
     User save(User user);
     User update(UserDTO dto);
+    void delete(String id);
 }

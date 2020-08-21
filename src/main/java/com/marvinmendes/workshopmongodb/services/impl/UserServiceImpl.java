@@ -41,6 +41,12 @@ public class UserServiceImpl implements UserService {
         return repository.save(userSaved);
     }
 
+    @Override
+    public void delete(String id) {
+        User userSaved = getById(id);
+        repository.delete(userSaved);
+    }
+
     public User fromDto(UserDTO dto) {
         return new User(dto.getId(), dto.getName(), dto.getEmail());
     }
