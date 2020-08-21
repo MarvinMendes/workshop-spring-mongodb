@@ -40,4 +40,10 @@ public class UserResource {
         return ResponseEntity.created(uri).build();
     }
 
+    @PutMapping
+    public ResponseEntity<UserDTO> update(@RequestBody UserDTO dto) {
+        User userUpdated = service.update(dto);
+        return ResponseEntity.ok().body(new UserDTO(userUpdated));
+    }
+
 }

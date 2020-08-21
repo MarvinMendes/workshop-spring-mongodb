@@ -33,6 +33,14 @@ public class UserServiceImpl implements UserService {
         return repository.insert(user);
     }
 
+    @Override
+    public User update(UserDTO dto) {
+        User userSaved = getById(dto.getId());
+        userSaved.setName(dto.getName());
+        userSaved.setEmail(dto.getEmail());
+        return repository.save(userSaved);
+    }
+
     public User fromDto(UserDTO dto) {
         return new User(dto.getId(), dto.getName(), dto.getEmail());
     }
