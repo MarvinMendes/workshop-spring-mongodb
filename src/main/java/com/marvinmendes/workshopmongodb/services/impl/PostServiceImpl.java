@@ -2,6 +2,7 @@ package com.marvinmendes.workshopmongodb.services.impl;
 
 import com.marvinmendes.workshopmongodb.DTO.PostDTO;
 import com.marvinmendes.workshopmongodb.domain.Post;
+import com.marvinmendes.workshopmongodb.domain.User;
 import com.marvinmendes.workshopmongodb.exception.ObjectNotFoundException;
 import com.marvinmendes.workshopmongodb.repository.PostRepository;
 import com.marvinmendes.workshopmongodb.services.PostService;
@@ -21,5 +22,9 @@ public class PostServiceImpl implements PostService {
     public Post save(Post post) {
         return repository.insert(post);
     }
-    
+
+    @Override
+    public Post getById(String id) {
+        return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+    }
 }

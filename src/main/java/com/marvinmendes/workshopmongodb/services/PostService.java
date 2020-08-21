@@ -8,4 +8,5 @@ import java.util.List;
 @Service
 public interface PostService {
     Post save(Post user);
+    Post getById(String id);
 }
