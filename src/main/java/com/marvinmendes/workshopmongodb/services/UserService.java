@@ -8,4 +8,6 @@ import java.util.List;
 @Service
 public interface UserService {
     List<User> findAll();
+    User getById(String id);
+    User save(User user);
 }

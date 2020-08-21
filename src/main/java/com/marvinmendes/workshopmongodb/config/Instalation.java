@@ -2,19 +2,17 @@ package com.marvinmendes.workshopmongodb.config;
 
 import com.marvinmendes.workshopmongodb.domain.User;
 import com.marvinmendes.workshopmongodb.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 
 @Configuration
+@RequiredArgsConstructor
 public class Instalation implements CommandLineRunner {
 
     private final UserRepository repository;
-
-    public Instalation(UserRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public void run(String... args) throws Exception {
