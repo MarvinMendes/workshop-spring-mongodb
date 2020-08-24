@@ -31,6 +31,6 @@ public class PostServiceImpl implements PostService {
     }
 
     public List<Post> getByTitle(String text) {
-        return repository.findByTitleContainingIgnoreCase(text);
+        return repository.searchByTitle(text);
     }
 }
