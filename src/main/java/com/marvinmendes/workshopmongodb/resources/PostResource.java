@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -30,5 +31,18 @@ public class PostResource {
         List<Post> postsByTitle = service.getByTitle(text);
         return ResponseEntity.ok().body(postsByTitle);
     }
+
+    //filtra por uma palavra em qualquer lugar de um Post, seja no titulo ou no corpo e por um intervalo de data
+    @GetMapping(value = "/fullsearch")
+    public ResponseEntity<List<Post>> fullSearch(@RequestParam(value = "text", defaultValue = "") String text,
+            @RequestParam(value = "minDate", defaultValue = "") String minDate,
+            @RequestParam(value = "maxDate", defaultValue = "") String maxDate) {
+        text = URL.decodeParam(text);
+        Date min = URL.parseDate(minDate, new Date(0L));
+        Date max = URL.parseDate(maxDate, new Date());
+        List<Post> fullSearch = service.fullSearch(text, min, max);
+        return ResponseEntity.ok().body(fullSearch);
+    }
+
 
 }

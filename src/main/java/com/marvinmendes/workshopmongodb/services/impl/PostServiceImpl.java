@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -30,7 +31,15 @@ public class PostServiceImpl implements PostService {
         return repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
     }
 
+    @Override
+    public List<Post> fullSearch(String text, Date minDate, Date maxDate) {
+        maxDate = new Date(maxDate.getTime() + 24 * 60 * 60 * 1000);
+        return repository.fullSearch(text, minDate, maxDate);
+    }
+
     public List<Post> getByTitle(String text) {
         return repository.searchByTitle(text);
     }
+
+
 }
